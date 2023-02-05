@@ -1,12 +1,17 @@
-const {
-    frontEndContractsFile,
-    frontEndContractsFile2,
-    frontEndAbiLocation,
-    frontEndAbiLocation2,
-} = require("../helper-hardhat-config")
+// const {
+//     frontEndContractsFile,
+//     frontEndContractsFile2,
+//     frontEndAbiLocation,
+//     frontEndAbiLocation2,
+// } = require("../helper-hardhat-config")
 require("dotenv").config()
 const fs = require("fs")
 const { network } = require("hardhat")
+
+const frontEndContractsFile = "../frontend/constants/networkMapping.json"
+const frontEndContractsFile2 = "../frontend/constants/networkMapping.json"
+const frontEndAbiLocation = "../frontend/constants/"
+const frontEndAbiLocation2 = "../frontend/constants/"
 
 module.exports = async () => {
     if (process.env.UPDATE_FRONT_END) {
