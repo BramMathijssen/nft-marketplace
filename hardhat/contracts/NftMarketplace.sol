@@ -107,11 +107,7 @@ contract NftMarketplace is ReentrancyGuard {
         address nftAddress,
         uint256 tokenId,
         uint256 price
-    )
-        external
-        notListed(nftAddress, tokenId)
-        isOwner(nftAddress, tokenId, msg.sender)
-    {
+    ) external notListed(nftAddress, tokenId) isOwner(nftAddress, tokenId, msg.sender) {
         if (price <= 0) {
             revert PriceMustBeAboveZero();
         }
@@ -131,11 +127,7 @@ contract NftMarketplace is ReentrancyGuard {
     function cancelListing(
         address nftAddress,
         uint256 tokenId
-    )
-        external
-        isOwner(nftAddress, tokenId, msg.sender)
-        isListed(nftAddress, tokenId)
-    {
+    ) external isOwner(nftAddress, tokenId, msg.sender) isListed(nftAddress, tokenId) {
         delete (s_listings[nftAddress][tokenId]);
         emit ItemCanceled(msg.sender, nftAddress, tokenId);
     }
@@ -160,11 +152,7 @@ contract NftMarketplace is ReentrancyGuard {
         s_proceeds[listedItem.seller] += msg.value;
 
         delete (s_listings[nftAddress][tokenId]); // Re-entrancy guard: we delete from the mapping BEFORE transferring the NFT
-        IERC721(nftAddress).safeTransferFrom(
-            listedItem.seller,
-            msg.sender,
-            tokenId
-        );
+        IERC721(nftAddress).safeTransferFrom(listedItem.seller, msg.sender, tokenId);
         emit ItemBought(msg.sender, nftAddress, tokenId, listedItem.price);
     }
 
