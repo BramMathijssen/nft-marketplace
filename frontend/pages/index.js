@@ -15,6 +15,7 @@ export default function Home() {
     return (
         <div className="container mx-auto">
             <h1 className="py-4 px-4 font-bold text-2xl">Recently Listed</h1>
+            {console.log(listedNfts)}
             <div className="flex flex-wrap">
                 {isWeb3Enabled && chainId ? (
                     loading || !listedNfts ? (

@@ -111,6 +111,7 @@ export default function NFTBox({ price, nftAddress, tokenId, marketplaceAddress,
                             marketplaceAddress={marketplaceAddress}
                             nftAddress={nftAddress}
                             onClose={hideModal}
+                            imageURI={imageURI}
                         />
                         <Card
                             title={tokenName}
